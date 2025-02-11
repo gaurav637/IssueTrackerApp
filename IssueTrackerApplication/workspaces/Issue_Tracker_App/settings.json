@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "modules": [
+       {
+            "name": "IssueTracker",
+            "path": "IssueTracker"
+        }
+    ],
+    "app_routes": [
+        {
+            "re_path": "^IssueTracker/",
+            "module": "IssueTracker",
+            "url": "urls"
+        }
+    ],
+    "package_routes": [],
+    "app_name": "IssueTracker",
+    "zango_version": ">=0.4.1"
+}
