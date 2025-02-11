@@ -1,1 +1,0 @@
-# this file store all the views for the project 
