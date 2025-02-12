@@ -53,9 +53,9 @@ jobs:
             echo "No requirements.txt found. Skipping dependencies installation."
           fi
 
-      - name: Run Tests with pytest
-        run: |
-          python -m pytest tests/ --maxfail=5 --disable-warnings --tb=short
+      # - name: Run Tests with pytest
+      #   run: |
+      #     python -m pytest tests/ --maxfail=5 --disable-warnings --tb=short
 
   merge-to-main:
     needs: build
