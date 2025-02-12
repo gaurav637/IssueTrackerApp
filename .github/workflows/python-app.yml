@@ -88,19 +88,18 @@ jobs:
           # Merge staging into main
           git merge staging --no-ff -m "Auto-merged staging into main"
           git push origin main
-
+          
       - name: Send Email Notification
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
+          server_port: 587
+          secure: false
           username: ${{ secrets.GMAIL_USERNAME }}
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}  # Must be an App Password
+          password: ${{ secrets.GMAIL_PASSWORD }}
           from: ${{ secrets.GMAIL_USERNAME }}
           to: ${{ secrets.RECIPIENT_EMAIL }}
           subject: "Merge Successful: Staging → Main"
-          convert_markdown: true
           html_body: |
             <h2>Deployment Notification</h2>
             <p>The latest changes from staging have been successfully merged into main.</p>
@@ -108,6 +107,7 @@ jobs:
               <li><strong>Repository:</strong> ${{ github.repository }}</li>
               <li><strong>Workflow:</strong> ${{ github.workflow }}</li>
               <li><strong>Triggered by:</strong> ${{ github.actor }}</li>
+              <li><strong>Time:</strong> ${{ github.event.head_commit.timestamp }}</li>
             </ul>
 
       - name: Create deployment package
