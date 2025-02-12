@@ -125,4 +125,5 @@ jobs:
           environment_name: "IssueTracker-env"
           version_label: ${{ github.sha }}
           region: ap-south-1  
+          wait_for_deployment: false
           deployment_package: deploy.zip
