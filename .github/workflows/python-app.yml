@@ -127,3 +127,4 @@ jobs:
           region: ap-south-1  
           wait_for_deployment: false
           deployment_package: deploy.zip
+
