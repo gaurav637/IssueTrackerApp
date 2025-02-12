@@ -96,8 +96,8 @@ jobs:
             server_port: 587
             secure: false
             username: ${{ secrets.GMAIL_USERNAME }}
-            password: ${{ secrets.GMAIL_PASSWORD }}
-            from: ${{ secrets.GMAIL_USERNAME }}
+            password: ${{ secrets.GMAIL_APP_PASSWORD }}
+            from: ${{ secrets.SENDER_EMAIL }}
             to: ${{ secrets.RECIPIENT_EMAIL }}
             subject: "Merge Successful: Staging → Main"
             html_body: |
