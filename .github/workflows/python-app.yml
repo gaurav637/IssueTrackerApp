@@ -96,10 +96,19 @@ jobs:
           server_port: 465
           secure: true
           username: ${{ secrets.GMAIL_USERNAME }}
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          from: ${{ secrets.SENDER_EMAIL }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}  # Must be an App Password
+          from: ${{ secrets.GMAIL_USERNAME }}
           to: ${{ secrets.RECIPIENT_EMAIL }}
           subject: "Merge Successful: Staging → Main"
+          convert_markdown: true
+          html_body: |
+            <h2>Deployment Notification</h2>
+            <p>The latest changes from staging have been successfully merged into main.</p>
+            <ul>
+              <li><strong>Repository:</strong> ${{ github.repository }}</li>
+              <li><strong>Workflow:</strong> ${{ github.workflow }}</li>
+              <li><strong>Triggered by:</strong> ${{ github.actor }}</li>
+            </ul>
           body: |
             The latest changes from staging have been successfully merged into main.
 
