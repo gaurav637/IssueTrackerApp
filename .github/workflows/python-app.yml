@@ -92,15 +92,17 @@ jobs:
       - name: Send Email Notification
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.sendgrid.net
-          server_port: 587
-          username: apikey
-          password: ${{ secrets.SENDGRID_API_KEY }}
-          from: "GitHub Actions <noreply@github.com>"
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.GMAIL_USERNAME }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          from: ${{ secrets.SENDER_EMAIL }}
           to: ${{ secrets.RECIPIENT_EMAIL }}
           subject: "Merge Successful: Staging → Main"
           body: |
             The latest changes from staging have been successfully merged into main.
+
             Repository: ${{ github.repository }}
             Workflow: ${{ github.workflow }}
             Triggered by: ${{ github.actor }}
