@@ -96,7 +96,7 @@ jobs:
           server_port: 587
           username: apikey
           password: ${{ secrets.SENDGRID_API_KEY }}
-          from: ${{ secrets.YOUR_EMAIL }}
+          from: ${{ secrets.SENDER_EMAIL }}
           to: ${{ secrets.RECIPIENT_EMAIL }}
           subject: "Merge Successful: Staging → Main"
           body: |
