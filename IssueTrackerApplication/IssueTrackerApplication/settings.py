@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from zango.config.settings.base import setup_settings  # Changed from star import
 from zango.config.settings.base import *  # noqa: F403
 
 
