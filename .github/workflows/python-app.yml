@@ -65,12 +65,27 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for all branches
+          ref: staging # Explicitly checkout staging branch
 
       - name: Merge Staging into Main
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git checkout main
+
+          # Fetch all branches
+          git fetch origin
+
+          # Create main branch if it doesn't exist
+          if ! git show-ref --quiet refs/remotes/origin/main; then
+            git checkout -b main
+            git push -u origin main
+          else
+            git checkout main
+          fi
+
+          # Merge staging into main
           git merge staging --no-ff -m "Auto-merged staging into main"
           git push origin main
 
