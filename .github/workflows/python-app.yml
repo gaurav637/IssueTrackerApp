@@ -1,10 +1,21 @@
+---
 name: Issue Tracker Application
 
 on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "staging"
+        type: choice
+        options:
+          - staging
+          - production
   push:
-    branches: [ "staging" ]
+    branches: ["staging"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 permissions:
   contents: write
@@ -41,9 +52,10 @@ jobs:
           else
             echo "No requirements.txt found. Skipping dependencies installation."
           fi
+
       - name: Run Tests with pytest
         run: |
-          pytest --maxfail=5 --disable-warnings --tb=short
+          python -m pytest tests/ --maxfail=5 --disable-warnings --tb=short
 
   merge-to-main:
     needs: build
@@ -72,7 +84,8 @@ jobs:
           from: ${{ secrets.YOUR_EMAIL }}
           to: ${{ secrets.RECIPIENT_EMAIL }}
           subject: "Merge Successful: Staging → Main"
-          body: "The latest changes from staging have been successfully merged into main."
+          body: |
+            The latest changes from staging have been successfully merged into main.
 
       - name: Create deployment package
         run: zip -r deploy.zip . -x '*.git*'
