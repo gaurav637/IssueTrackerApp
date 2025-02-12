@@ -109,12 +109,6 @@ jobs:
               <li><strong>Workflow:</strong> ${{ github.workflow }}</li>
               <li><strong>Triggered by:</strong> ${{ github.actor }}</li>
             </ul>
-          body: |
-            The latest changes from staging have been successfully merged into main.
-
-            Repository: ${{ github.repository }}
-            Workflow: ${{ github.workflow }}
-            Triggered by: ${{ github.actor }}
 
       - name: Create deployment package
         run: zip -r deploy.zip . -x '*.git*'
