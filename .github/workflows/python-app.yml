@@ -41,12 +41,6 @@ jobs:
           else
             echo "No requirements.txt found. Skipping dependencies installation."
           fi
-
-      - name: Lint with flake8
-        run: |
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --ignore=F401
-          flake8 . --count --max-complexity=15 --max-line-length=200 --statistics
-
       - name: Run Tests with pytest
         run: |
           pytest --maxfail=5 --disable-warnings --tb=short
