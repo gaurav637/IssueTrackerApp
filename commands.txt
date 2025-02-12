@@ -1,0 +1,20 @@
+# This file store all important commands for the project
+
+# Create a new django project
+docker-compose run app django-admin startproject core .
+
+# run the container
+docker-compose up -d
+
+# Connect to PostgreSQL
+psql postgres
+
+#PostgreSQL:-
+
+# Once connected, try these commands:
+\l          # List all databases
+\du         # List all users
+\c IssueTracker   # Connect to your database
+\dt         # List all tables in current
+
+# pre-commit run -> if you want you can run them manually on your codebase.
