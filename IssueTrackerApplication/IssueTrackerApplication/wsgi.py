@@ -1,5 +1,5 @@
 """
-WSGI config for testproject project.
+WSGI config for IssueTrackerApplication project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -8,18 +8,9 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
+from django.core.wsgi import get_wsgi_application
 
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "IssueTrackerApplication.settings")
-
-
-from django.core.wsgi import get_wsgi_application  # noqa: E402
-
-from zango.core.monitoring import setup_telemetry  # noqa: E402
-
-
-# The telemetry instrumentation library setup needs to run prior to django's setup.
-setup_telemetry(add_django_instrumentation=True)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'IssueTrackerApplication.settings')
 
 application = get_wsgi_application()
 
